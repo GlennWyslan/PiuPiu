@@ -953,25 +953,6 @@ h6 {
 
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const currentParams = new URLSearchParams(window.location.search);
-        if (![...currentParams].length) return;
-
-        const links = document.querySelectorAll('a[href]');
-        links.forEach(link => {
-            const linkUrl = new URL(link.href, window.location.origin);
-            currentParams.forEach((value, key) => {
-                if (!linkUrl.searchParams.has(key)) {
-                    linkUrl.searchParams.append(key, value);
-                }
-            });
-            link.href = linkUrl.toString();
-        });
-    });
-</script>
-
-
 
 
 
@@ -981,6 +962,17 @@ h6 {
       .atomicat-big-container { overflow: hidden; }
       .a-b-cont { overflow: hidden; }
     </style><title>Título</title>
+        <script>
+    window.onload = function () {
+        var links = document.getElementsByTagName("a");
+        for (var i = 0, n = links.length; i < n; i++) {
+            var href = links[i].href.trim() +
+                    (links[i].href.indexOf("?") > 0 ? '&' : '?') +
+                    document.location.search.replace('?', '').toString();
+            links[i].href = href;
+        }
+    }
+</script>
     </head>
     < id="_cOHbGd74jKeU0h2sR1LwlEntaHi2" data-page="_qUI0pIU42YysWuGeTQYF" data-page-type="page">
       
